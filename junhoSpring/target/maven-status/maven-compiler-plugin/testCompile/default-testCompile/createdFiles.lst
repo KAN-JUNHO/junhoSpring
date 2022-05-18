@@ -1,0 +1,3 @@
+org\conan\sample\SampleTest.class
+org\conan\persistence\JDBCTests.class
+org\conan\sample\HotelTest.class
