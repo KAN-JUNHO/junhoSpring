@@ -14,7 +14,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@ComponentScan(basePackages = {"org.conan.sample"})
+@ComponentScan(basePackages = {"org.conan.*"})
 @MapperScan(basePackages = {"org.conan.mapper"})
 public class RootConfig {
 	@Bean
