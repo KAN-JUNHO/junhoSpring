@@ -17,3 +17,4 @@ public class CommonExceptionAdvice {
 		return "error_page";
 	}
 }
+	
