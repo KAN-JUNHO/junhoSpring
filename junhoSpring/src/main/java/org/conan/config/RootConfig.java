@@ -25,7 +25,7 @@ public class RootConfig {
 		
 //		net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator
 //		hikariConfig.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-//		hikariConfig.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:XE");
+//		hikariConfig.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:XE");1
 		
 		hikariConfig.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
 		hikariConfig.setJdbcUrl("jdbc:log4jdbc:oracle:thin:@localhost:1521:XE");
