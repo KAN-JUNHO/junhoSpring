@@ -15,6 +15,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
 @ComponentScan(basePackages = {"org.conan.*"})
+//@ComponentScan(basePackages = {"org.conan.controller","org.conan.service"})
 @MapperScan(basePackages = {"org.conan.mapper"})
 public class RootConfig {
 	@Bean
@@ -42,5 +43,15 @@ public class RootConfig {
 		return (SqlSessionFactory)sqlSessionFactory.getObject();
 		
 	}
-
+	
 }
+
+
+
+
+
+
+
+
+
+
