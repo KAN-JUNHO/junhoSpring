@@ -3,6 +3,7 @@ package org.conan.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
+import org.conan.domain.Criteria;
 import org.conan.vo.BoardVO;
 
 public interface BoardMapper {
@@ -14,6 +15,9 @@ public interface BoardMapper {
 	public BoardVO read(long a);
 	public int delete(long a);
 	public int update(BoardVO board);
+
+	public int getTotalCount(Criteria cri);
 	
+	public List<BoardVO> getListWithSearch(Criteria cri);
 	
 }

@@ -2,7 +2,11 @@ package org.conan.service;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.List;
+
 import org.conan.config.RootConfig;
+import org.conan.domain.Criteria;
+import org.conan.mapper.BoardMapper;
 import org.conan.vo.BoardVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,12 +24,15 @@ public class BoardServiceTest {
 	@Setter(onMethod_ = {@Autowired})
 	private BoardService service;
 	
+
+	
 	@Test
 	public void testExist() {
 		log.info(service);
 		assertNotNull(service);
 	}
 	
+
 	@Test
 	public void testGetList() {
 		service.getList().forEach(board -> log.info(board));
@@ -59,7 +66,7 @@ public class BoardServiceTest {
 		log.info("MODIFY RESULT : "+service.modify(board));
 	}
 	
-	
+
 }
 
 

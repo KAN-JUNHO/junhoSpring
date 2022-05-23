@@ -25,59 +25,32 @@ import com.google.gson.Gson;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
+import oracle.net.aso.j;
+import oracle.net.aso.l;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration //WebApplicationContext를 이용하기 위함
 @ContextConfiguration(classes = {RootConfig.class,ServletConfig.class})
 @Log4j
-public class BoardControllerTest {
+public class TicketControllerTest {
 	@Setter(onMethod_ = {@Autowired})
 	private WebApplicationContext ctx;
 	private MockMvc mockMvc;
-	
-	//MockMvc : 가짜 mvc, 브라우저에서 사용하는 거처럼 Controller 실행
 	@Before
 	public void setup() {
 		this.mockMvc=MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
 	@Test
-	public void testList() throws Exception{
-		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/list"))
-				.andReturn().getModelAndView().getModelMap());
-	}
-	@Test
-	public void testResister() throws Exception{
-		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/register")
-				.param("title", "test from controller")
-				.param("content", "test from controller")
-				.param("writer","user0000"))
-				.andReturn().getModelAndView().getViewName();
-		log.info(resultPage);
-				
-	}
-	@Test
-	public void testGet() throws Exception{
-		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/get")
-				.param("bno", "2")).andReturn().getModelAndView().getModelMap());
-	}
-	@Test 
-	public void testModify() throws Exception{
-		String resultPage =
-				mockMvc.perform(MockMvcRequestBuilders.post("/board/modify")
-						.param("bno","1")
-						.param("title" , "이번 이번")
-						.param("content", "이번 이번")
-						.param("writer", "이번 유저"))
-				.andReturn().getModelAndView().getViewName();
-		log.info(resultPage);
-	}
-	
-	@Test
-	public void testRemove() throws Exception{
-		String resultPage = 
-				mockMvc.perform(MockMvcRequestBuilders.post("/board/remove")
-						.param("bno", "6")).andReturn().getModelAndView().getViewName();
-		log.info(resultPage);
+	public void testConvert() throws Exception{
+		Ticket ticket = new Ticket();
+		ticket.setTno(123);
+		ticket.setOwner("admin");
+		ticket.setGrade("SSS");
+		String jsonStr = new Gson().toJson(ticket);
+		log.info(jsonStr);
+		mockMvc.perform(post("/rsample/ticket")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(jsonStr)).andExpect(status().is(200));
 	}
 
 

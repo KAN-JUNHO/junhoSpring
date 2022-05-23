@@ -21,7 +21,19 @@
 			self.location = "/board/register"
 		})
 	})
-
+	var searchForm = $('#searchForm');
+	$("#searchForm button").on("click",function(e){
+		if (!searchForm.find("option:selected").val()) {
+			alert("검색종류 선택");
+			return false;
+		}
+		if (!searchForm.find("input[name='keyword']").val()) {
+			alert("키워드를 입력하세요")
+			return false;
+		}
+		e.preventDefault();
+		searchForm.submit();
+	})
 </script>
             <div class="row">
                 <div class="col-lg-12">
@@ -32,6 +44,7 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
+
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             게시글 목록
@@ -62,6 +75,18 @@
                                   </c:forEach>
                                 </tbody>
                             </table>
+	                        <form id='searchForm' action="/board/list" method="get">
+			                	<select class="form-group" name="type">
+			                		<option value="" <c:out value="${criteria.type==null?'selected':''}"/>>--</option>
+			               			<option value="T"<c:out value="${criteria.type eq 'T'?'selected':''}"/>>제목</option>
+			                		<option value="TC"<c:out value="${criteria.type eq 'TC'?'selected':''}"/>>제목 OR 내용</option>
+			                		
+			                	</select>
+			                	<input type="text" class="form-control" name='keyword' value='<c:out value="${criteria.keyword}"/>'>
+			                	<span class="input-group-btn">
+			                		<button class="btn btn-info" type="button"></button>
+			                	</span>
+		                	</form>
                             <!-- /.table-responsive -->
 							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModallabel" aria-hidden="true">
 							   <div class="modal-dialog">
@@ -82,10 +107,13 @@
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.panel-body -->
+
                     </div>
                     <!-- /.panel -->
+                    
                 </div>
                 <!-- /.col-lg-6 -->
             </div>
             <!-- /.row -->
+            
  <%@include file="../includes/footer.jsp" %>       

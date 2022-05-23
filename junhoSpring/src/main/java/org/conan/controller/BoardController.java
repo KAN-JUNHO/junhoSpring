@@ -1,5 +1,6 @@
 package org.conan.controller;
 
+import org.conan.domain.Criteria;
 import org.conan.service.BoardService;
 import org.conan.vo.BoardVO;
 import org.springframework.stereotype.Controller;
@@ -22,9 +23,9 @@ public class BoardController {
 	private BoardService service;
 	
 	@GetMapping("/list")
-	public void list(Model model) {
+	public void list(Model model, Criteria cri) {
 		log.info("list");
-		model.addAttribute("list",service.getList());
+		model.addAttribute("list",service.getList(cri));
 	}
 	@GetMapping("/register")
 	public void register() {

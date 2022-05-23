@@ -1,6 +1,9 @@
 package org.conan.board;
 
+import java.util.List;
+
 import org.conan.config.RootConfig;
+import org.conan.domain.Criteria;
 import org.conan.mapper.BoardMapper;
 import org.conan.vo.BoardVO;
 import org.junit.Test;
@@ -19,6 +22,7 @@ import oracle.net.aso.b;
 public class BoardMapperTest {
 	@Setter(onMethod_ = @__({@Autowired}))
 	private BoardMapper mapper;
+	
 	@Test
 	public void testGetList() {
 		mapper.getList().forEach(board -> log.info(board));
@@ -64,7 +68,14 @@ public class BoardMapperTest {
 		int count = mapper.update(board);
 		log.info("UPDATE COUNT : " +count);
 	}
-	
+	@Test
+	public void testSearch() {
+		Criteria cri = new Criteria();
+		cri.setKeyword("asdf");
+		cri.setType("TC");
+		List<BoardVO> list = mapper.getListWithSearch(cri);
+		list.forEach(board -> log.info(board));
+	}	
 }
 
 
