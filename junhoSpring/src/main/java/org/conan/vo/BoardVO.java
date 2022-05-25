@@ -1,6 +1,7 @@
 package org.conan.vo;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -12,4 +13,6 @@ public class BoardVO {
 	private String writer;
 	private Date regDate;
 	private Date updateDate;
+	
+	private List<BoardAttachVO> attachList;
 }

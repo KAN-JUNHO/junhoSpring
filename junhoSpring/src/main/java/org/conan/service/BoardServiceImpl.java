@@ -3,6 +3,7 @@ package org.conan.service;
 import java.util.List;
 
 import org.conan.domain.Criteria;
+import org.conan.mapper.BoardAttachMapper;
 import org.conan.mapper.BoardMapper;
 import org.conan.vo.BoardVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class BoardServiceImpl implements BoardService{
 //	
 	@Setter(onMethod_ = @Autowired)
 	private BoardMapper mapper;
+	private BoardAttachMapper attachMapper;
 
 	@Override
 	public List<BoardVO> getList(Criteria cri) {
@@ -28,8 +30,16 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Override
 	public void register(BoardVO board) {
-		log.info("register...."+board.getBno());
 		mapper.insertSelectKey(board);
+		log.info("register...."+board.getBno());
+
+		if(board.getAttachList()==null || board.getAttachList().size()<=0) {
+			return;
+		}
+		board.getAttachList().forEach(attach->{
+			attach.setBno(board.getBno());
+			attachMapper.insert(attach);
+		});
 	}
 
 	@Override

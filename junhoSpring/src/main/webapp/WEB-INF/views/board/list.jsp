@@ -46,9 +46,19 @@
                 <div class="col-lg-12">
 
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            게시글 목록
-                            <button id='regBtn' type="button" class="btn btn-xs pull-right">글쓰기</button>
+                        <div class="panel-heading"><i class="fa fa-comments fa-fw"></i> Reply</div>
+                        <div class="panel-body">
+                            <ul class="chat"> 
+                                <li class="left clearfix" data-rno="12">
+                                    <div>
+                                        <div class="header">
+                                                <strong class="primary-font">user00</strong> 
+                                                <small class="pull-right text-muted">2021-05-18 13:13</small>
+                                        </div>
+                                        <p>Good job</p>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -66,7 +76,7 @@
 								<c:forEach items="${list}" var="board">               
                                   <tr class="odd gradeX">
                                         <td>${board.bno }</td>
-                                        <td>${board.title}</td>
+                                        <td><a href="/board/get?bno=${board.bno }">${board.title}</a></td>
                                         <td>${board.writer }</td>
                                         <td>${board.regDate }</td>
                                         <td>${board.updateDate }</td> 

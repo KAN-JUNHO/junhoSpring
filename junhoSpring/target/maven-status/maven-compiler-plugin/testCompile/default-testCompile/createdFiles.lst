@@ -1,5 +1,0 @@
-org\conan\sample\SampleTest.class
-org\conan\sample\TimeMapperTest.class
-org\conan\DataSource\DataSourceTest.class
-org\conan\persistence\JDBCTests.class
-org\conan\sample\HotelTest.class

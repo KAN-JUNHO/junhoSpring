@@ -31,13 +31,24 @@ public class BoardController {
 	public void register() {
 		
 	}
-	@PostMapping("/register")
-	public String register(BoardVO board, RedirectAttributes rttr) {
-		log.info("register :"+board);
-		service.register(board);
-		rttr.addFlashAttribute("result",board.getBno());
-		return "redirect:/board/list/";
-	}
+	
+	  @PostMapping("/register")//등록
+	  public String register(BoardVO board, RedirectAttributes rttr) {
+		  log.info("register: "+board);
+		  if (board.getAttachList()!=null) {
+			board.getAttachList().forEach(attach->log.info(attach));
+		  }
+		  service.register(board);
+		  rttr.addFlashAttribute("result",board.getBno());
+		  return "redirect:/board/list/";
+	  }
+//	@PostMapping("/register")
+//	public String register(BoardVO board, RedirectAttributes rttr) {
+//		log.info("register :"+board);
+//		service.register(board);
+//		rttr.addFlashAttribute("result",board.getBno());
+//		return "redirect:/board/list/";
+//	}
 	@GetMapping({"/get","/modify"})
 	public void get(@RequestParam("bno")Long bno, Model model) {
 		log.info("get or modify");

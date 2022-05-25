@@ -16,7 +16,7 @@
 	<update id="update">
       UPDATE tbl_reply
       set reply = #{reply},
-      replyer = #{replyer},
+<!--       replyer = #{replyer}, -->
       updateDate = sysdate
       WHERE rno = #{rno}
     </update>
